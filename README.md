@@ -1,135 +1,232 @@
-# Concrete Compressive Strength Prediction using Machine Learning
+# 🏗️ Concrete Compressive Strength Prediction using Machine Learning
 
-Predicting the compressive strength of concrete is a fundamental task in civil engineering, as it helps engineers assess the quality and structural performance of concrete before construction. This project develops a machine learning model capable of predicting concrete compressive strength based on mix proportions and curing age. 
+Predicting the compressive strength of concrete is a fundamental task in civil engineering, as it helps engineers assess the quality and structural performance of concrete before construction.
 
-The workflow includes exploratory data analysis (EDA), feature engineering, model comparison, hyperparameter optimization with Optuna, model explainability using SHAP, and deployment as an interactive Streamlit web application.
+This project develops a machine learning model capable of predicting concrete compressive strength based on concrete mix proportions and curing age.
 
-## 🚀 Project Overview
+The workflow covers the complete machine learning lifecycle, including:
 
-This project demonstrates an end-to-end machine learning workflow for predicting the compressive strength of concrete. The objective was to build a highly accurate and interpretable regression model while incorporating engineering knowledge through feature engineering.
+- 📊 Exploratory Data Analysis (EDA)
+- 🛠️ Feature Engineering
+- 🤖 Model Comparison
+- 🎯 Hyperparameter Optimization with Optuna
+- 🧠 Model Explainability using SHAP
+- 🌐 Deployment with Streamlit
 
-**Final Model Performance (Unseen Test Set):**
+---
+
+## 🌐 Live Demo
+
+🚀 **Try the application here:**
+
+**👉 https://YOUR_STREAMLIT_URL**
+
+---
+
+## 🎥 Project Walkthrough
+
+A detailed explanation of the project is available on YouTube.
+
+📺 **Watch here:**
+
+**👉 https://YOUR_YOUTUBE_LINK**
+
+---
+
+# 🚀 Project Overview
+
+This project demonstrates an end-to-end machine learning workflow for predicting the compressive strength of concrete.
+
+The primary objective was to build a highly accurate and interpretable regression model while incorporating engineering knowledge through feature engineering.
+
+## Final Model Performance (Unseen Test Set)
+
 | Metric | Value |
-| :--- | :--- |
-| **MAE** | 2.38 MPa |
-| **RMSE** | 3.63 MPa |
-| **R²** | 0.95 |
+|---------|------:|
+| **MAE** | **2.38 MPa** |
+| **RMSE** | **3.63 MPa** |
+| **R²** | **0.95** |
 
-The model explains approximately 95% of the variability in concrete compressive strength while maintaining a relatively low prediction error.
+The final XGBoost model explains approximately **95%** of the variability in concrete compressive strength while maintaining a relatively low prediction error.
 
 ---
 
-## 📊 Dataset
+# 📸 Application Preview
 
-The dataset contains 1,030 concrete mix designs, each described using eight input variables and one target variable.
+> Replace this image with a screenshot of your Streamlit app.
 
-### Features
+![Application Screenshot](images/app.png)
+
+---
+
+# 📊 Dataset
+
+The dataset consists of **1,030 concrete mix designs**, each described using eight input variables and one target variable.
+
+## Features
+
 | Feature | Description |
-| :--- | :--- |
-| **Cement** | Cement content (kg/m³) |
-| **Slag** | Blast furnace slag (kg/m³) |
-| **Ash** | Fly ash (kg/m³) |
-| **Water** | Water content (kg/m³) |
-| **Superplasticizer**| Superplasticizer content (kg/m³) |
-| **Coarse Aggregate**| Coarse aggregate (kg/m³) |
-| **Fine Aggregate** | Fine aggregate (kg/m³) |
-| **Age** | Concrete curing age (days) |
+|---------|-------------|
+| Cement | Cement content (kg/m³) |
+| Slag | Blast furnace slag (kg/m³) |
+| Ash | Fly ash (kg/m³) |
+| Water | Water content (kg/m³) |
+| Superplasticizer | Superplasticizer content (kg/m³) |
+| Coarse Aggregate | Coarse aggregate (kg/m³) |
+| Fine Aggregate | Fine aggregate (kg/m³) |
+| Age | Concrete curing age (days) |
 
-### Target
-* **Concrete Compressive Strength** (MPa)
+### Target Variable
 
----
-
-## 🔍 Exploratory Data Analysis (EDA)
-
-Several exploratory analyses were conducted to better understand the dataset:
-
-**Distribution Analysis:**
-* Concrete strength is approximately normally distributed with a slight positive skew.
-* Cement exhibits a moderate positive skew.
-* Slag, fly ash, and superplasticizer are heavily right-skewed, indicating that they are absent or used sparingly in many mixes.
-* Water and aggregate contents are comparatively more symmetric.
-* Age is heavily skewed toward younger curing ages.
-
-**Correlation Analysis:**
-* **Cement** positively correlates with compressive strength.
-* **Water** negatively correlates with strength.
-* **Age** positively influences concrete strength.
-* **Superplasticizer** contributes positively to strength.
-* **Aggregate contents** exhibit relatively weak negative relationships.
+**Concrete Compressive Strength (MPa)**
 
 ---
 
-## 🛠 Feature Engineering
+# 🔍 Exploratory Data Analysis
 
-Engineering knowledge was incorporated into the model by creating additional features, which substantially improved predictive performance.
+Several exploratory analyses were performed to better understand the dataset.
 
-### Engineered Features
-| Feature | Description |
-| :--- | :--- |
-| **Water–Cement Ratio** | Water divided by cement content |
-| **Binder Content** | Cement + Slag + Fly Ash |
-| **Water–Binder Ratio** | Water divided by total binder content |
-| **Total Aggregates** | Coarse + Fine Aggregate |
-| **Aggregate Ratio** | Total Aggregates divided by Cement |
-| **Log(Age)** | Logarithmic transformation of curing age |
+### Distribution Analysis
 
-**Key Outcomes:**
-* **Water–Binder Ratio** became the strongest negative predictor.
-* **Binder Content** became the strongest positive predictor.
-* **Log-transformed Age** better captured the nonlinear strength gain over time.
+Key observations include:
+
+- Concrete strength follows an approximately normal distribution with a slight positive skew.
+- Cement exhibits a moderate positive skew.
+- Slag, fly ash and superplasticizer are heavily right-skewed, indicating they are absent or used sparingly in many concrete mixes.
+- Water and aggregate contents display comparatively symmetric distributions.
+- Age is heavily skewed toward younger curing ages.
+
+### Correlation Analysis
+
+Important findings include:
+
+- Cement positively correlates with compressive strength.
+- Water negatively correlates with strength.
+- Superplasticizer positively contributes to strength.
+- Age exhibits a strong positive influence.
+- Aggregate contents show relatively weak negative relationships.
 
 ---
 
-## 🤖 Machine Learning Models
+# 🛠️ Feature Engineering
 
-Several regression algorithms were evaluated against a Linear Regression baseline. Tree-based ensemble models significantly outperformed the baseline.
+To better capture engineering relationships within concrete mix designs, several new features were created.
+
+| Engineered Feature | Description |
+|-------------------|-------------|
+| Water-Cement Ratio | Water ÷ Cement |
+| Binder Content | Cement + Slag + Fly Ash |
+| Water-Binder Ratio | Water ÷ Total Binder |
+| Total Aggregates | Coarse + Fine Aggregate |
+| Aggregate Ratio | Total Aggregates ÷ Cement |
+| Log(Age) | Logarithmic transformation of curing age |
+
+### Engineering Insights
+
+Feature engineering substantially improved predictive performance.
+
+Notable findings include:
+
+- ✅ Water-Binder Ratio became the strongest negative predictor.
+- ✅ Binder Content became the strongest positive predictor.
+- ✅ Log-transformed Age captured the nonlinear strength gain over time.
+
+---
+
+# 🤖 Machine Learning Models
+
+Several regression algorithms were evaluated.
 
 | Model | MAE | RMSE | R² |
-| :--- | :--- | :--- | :--- |
-| **Random Forest** | 3.27 | 5.21 | 0.896 |
-| **XGBoost** | 3.03 | 5.27 | 0.893 |
-| **Gradient Boosting** | 3.60 | 5.45 | 0.886 |
-| **K-Nearest Neighbors** | 4.70 | 6.42 | 0.841 |
-| **Decision Tree** | 4.64 | 7.44 | 0.787 |
-| **Linear Regression (Baseline)** | 5.84 | 7.95 | 0.757 |
-| **Support Vector Machine** | 5.72 | 8.03 | 0.752 |
+|------|------:|------:|------:|
+| Random Forest | 3.27 | 5.21 | 0.896 |
+| XGBoost | 3.03 | 5.27 | 0.893 |
+| Gradient Boosting | 3.60 | 5.45 | 0.886 |
+| K-Nearest Neighbors | 4.70 | 6.42 | 0.841 |
+| Decision Tree | 4.64 | 7.44 | 0.787 |
+| Linear Regression (Baseline) | 5.84 | 7.95 | 0.757 |
+| Support Vector Machine | 5.72 | 8.03 | 0.752 |
 
-### Hyperparameter Optimization
-Optuna was used to optimize both Random Forest and XGBoost. The optimized **XGBoost** model achieved the best validation performance and was selected as the final model.
+Linear Regression served as the baseline model.
+
+Tree-based ensemble methods significantly outperformed the baseline.
 
 ---
 
-## 🧠 Model Explainability (SHAP)
+# 🎯 Hyperparameter Optimization
 
-SHAP analysis was performed to understand how the model makes predictions. The most influential features were:
+Hyperparameter optimization was performed using **Optuna**.
+
+Both Random Forest and XGBoost were optimized.
+
+The optimized **XGBoost** model achieved the best validation performance and was selected as the final model.
+
+---
+
+# 🧠 Model Explainability (SHAP)
+
+SHAP (SHapley Additive exPlanations) was used to interpret the trained model.
+
+The most influential features were:
+
 1. Age
-2. Water–Binder Ratio
+2. Water-Binder Ratio
 3. Binder Content
-4. Water–Cement Ratio
+4. Water-Cement Ratio
 5. Water
 
-The SHAP results align closely with established concrete technology principles:
-* Older concrete generally develops higher strength.
-* Increasing the water–binder ratio reduces strength.
-* Higher binder content increases strength.
-* Lower water content generally improves compressive strength.
+These findings align closely with established concrete technology principles.
+
+- Older concrete generally develops higher strength.
+- Higher binder content increases compressive strength.
+- Lower water-binder ratios produce stronger concrete.
+- Increasing water content generally reduces strength.
 
 ---
 
-## 💻 Streamlit Application
+# 📈 Model Evaluation
 
-A Streamlit web application was developed to allow users to interactively predict concrete compressive strength. 
+The final model demonstrated excellent predictive performance.
 
-**Features:**
-* Enter concrete mix proportions.
-* Predict compressive strength instantly.
-* View engineered mix characteristics.
-* Classify predicted concrete strength.
+### Actual vs Predicted
+
+> Replace with your figure.
+
+![Actual vs Predicted](images/actual_vs_predicted.png)
 
 ---
 
-## 📂 Repository Structure
+### Residual Analysis
+
+> Replace with your figure.
+
+![Residual Plot](images/residual_plot.png)
+
+---
+
+### SHAP Summary Plot
+
+> Replace with your figure.
+
+![SHAP Summary](images/shap_summary.png)
+
+---
+
+# 💻 Streamlit Web Application
+
+A Streamlit application was developed to allow users to interactively predict concrete compressive strength.
+
+### Features
+
+- Enter concrete mix proportions
+- Predict compressive strength instantly
+- View engineered mix characteristics
+- Concrete strength classification
+- User-friendly engineering interface
+
+---
+
+# 📂 Repository Structure
 
 ```text
 concrete-compressive-strength-prediction/
@@ -137,6 +234,7 @@ concrete-compressive-strength-prediction/
 ├── app.py
 ├── README.md
 ├── requirements.txt
+├── LICENSE
 ├── .gitignore
 │
 ├── data/
@@ -146,48 +244,62 @@ concrete-compressive-strength-prediction/
 │   └── concrete_strength_model.joblib
 │
 ├── notebooks/
-│   ├── concrete-compressive-strength-project
+│   └── concrete-compressive-strength-project.ipynb
 │
 └── images/
+    ├── app.png
+    ├── actual_vs_predicted.png
+    ├── residual_plot.png
+    └── shap_summary.png
+```
 
 ---
 
-## Installation
+# ⚙️ Installation
 
-- Clone the repository
+Clone the repository
 
--- git clone https://github.com/yourusername/concrete-compressive-strength-prediction.git
+```bash
+git clone https://github.com/YOUR_GITHUB_USERNAME/concrete-compressive-strength-prediction.git
+```
 
--Navigate into the project
+Navigate into the project
 
--- cd concrete-compressive-strength-prediction
+```bash
+cd concrete-compressive-strength-prediction
+```
 
-- Install dependencies
+Install dependencies
 
--- pip install -r requirements.txt
+```bash
+pip install -r requirements.txt
+```
 
-- Run the Streamlit application
+Run the Streamlit application
 
--- streamlit run app.py
+```bash
+streamlit run app.py
+```
 
 ---
 
-
-## Future Improvements
+# 🚀 Future Improvements
 
 Potential enhancements include:
 
-Deep learning models for comparison
-Model uncertainty estimation
-Batch prediction using CSV uploads
-Mix optimization to achieve a target strength
-Concrete strength prediction intervals
-Docker containerization and cloud deployment
-Integration with engineering design workflows
+- Deep Learning models
+- Prediction uncertainty estimation
+- Batch prediction from CSV files
+- Mix design optimization for target strength
+- Confidence intervals for predictions
+- Docker containerization
+- Cloud deployment
+- Integration into structural engineering workflows
 
 ---
 
-## Technologies Used
+# 🛠️ Technologies Used
+
 - Python
 - Pandas
 - NumPy
@@ -198,24 +310,33 @@ Integration with engineering design workflows
 - Matplotlib
 - Plotly
 - Streamlit
+- Joblib
 
 ---
 
+# 📚 References
 
-## References
-- Yeh, I. C. (1998). Modeling of Strength of High-Performance Concrete Using Artificial Neural Networks.
-UCI Machine Learning Repository – Concrete Compressive Strength Dataset.
-- Scikit-learn Documentation.
-- XGBoost Documentation.
-- Optuna Documentation.
-- SHAP Documentation.
+- Yeh, I. C. (1998). *Modeling of Strength of High-Performance Concrete Using Artificial Neural Networks.*
+- UCI Machine Learning Repository – Concrete Compressive Strength Dataset.
+- Scikit-learn Documentation
+- XGBoost Documentation
+- Optuna Documentation
+- SHAP Documentation
 
 ---
 
-### Author
+# 👨‍💻 Author
 
-**Uche**
+## Uche
 
-Civil Engineering Graduate | Machine Learning Enthusiast | Incoming MSc Structural Engineering Student
+Civil Engineering Graduate | Incoming MSc Structural Engineering Student | Machine Learning Enthusiast
 
-Passionate about applying machine learning, finite element analysis, and data-driven techniques to solve civil and structural engineering problems.
+Passionate about applying Machine Learning, Artificial Intelligence and Finite Element Analysis to solve real-world civil and structural engineering problems.
+
+---
+
+## ⭐ If you found this project interesting...
+
+Consider giving the repository a ⭐ on GitHub!
+
+It helps others discover the project and supports future engineering-focused machine learning work.
