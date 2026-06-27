@@ -19,7 +19,7 @@ The workflow covers the complete machine learning lifecycle, including:
 
 🚀 **Try the application here:**
 
-**👉 https://YOUR_STREAMLIT_URL**
+**👉 https://predictingconcretecompressivestrengthml.streamlit.app/**
 
 ---
 
