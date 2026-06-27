@@ -53,8 +53,6 @@ The final XGBoost model explains approximately **95%** of the variability in con
 
 # 📸 Application Preview
 
-> Replace this image with a screenshot of your Streamlit app.
-
 ![Application Screenshot](images/app.png)
 
 ---
@@ -190,23 +188,17 @@ The final model demonstrated excellent predictive performance.
 
 ### Actual vs Predicted
 
-> Replace with your figure.
-
 ![Actual vs Predicted](images/actual_vs_predicted.png)
 
 ---
 
 ### Residual Analysis
 
-> Replace with your figure.
-
 ![Residual Plot](images/residual_plot.png)
 
 ---
 
 ### SHAP Summary Plot
-
-> Replace with your figure.
 
 ![SHAP Summary](images/shap_summary.png)
 
@@ -327,7 +319,7 @@ Potential enhancements include:
 
 # 👨‍💻 Author
 
-## Uche
+## Uche Macdonald
 
 Civil Engineering Graduate | Incoming MSc Structural Engineering Student | Machine Learning Enthusiast
 
