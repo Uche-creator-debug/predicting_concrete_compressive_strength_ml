@@ -242,13 +242,13 @@ concrete-compressive-strength-prediction/
 Clone the repository
 
 ```bash
-git clone https://github.com/Uche-creator-debug/concrete-compressive-strength-prediction.git
+git clone https://github.com/Uche-creator-debug/predicting_concrete_compressive_strength_ml.git
 ```
 
 Navigate into the project
 
 ```bash
-cd concrete-compressive-strength-prediction
+cd predicting_concrete_compressive_strength_ml
 ```
 
 Install dependencies
