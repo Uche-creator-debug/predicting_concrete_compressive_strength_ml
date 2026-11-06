@@ -242,7 +242,7 @@ concrete-compressive-strength-prediction/
 Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USERNAME/concrete-compressive-strength-prediction.git
+git clone https://github.com/Uche-creator-debug/concrete-compressive-strength-prediction.git
 ```
 
 Navigate into the project
