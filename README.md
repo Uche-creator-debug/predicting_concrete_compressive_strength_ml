@@ -23,16 +23,6 @@ The workflow covers the complete machine learning lifecycle, including:
 
 ---
 
-## 🎥 Project Walkthrough
-
-A detailed explanation of the project is available on YouTube.
-
-📺 **Watch here:**
-
-**👉 https://YOUR_YOUTUBE_LINK**
-
----
-
 # 🚀 Project Overview
 
 This project demonstrates an end-to-end machine learning workflow for predicting the compressive strength of concrete.
@@ -321,14 +311,6 @@ Potential enhancements include:
 
 ## Uche Macdonald
 
-Civil Engineering Graduate | Incoming MSc Structural Engineering Student | Machine Learning Enthusiast
+Civil Engineering Graduate | MSc Structural Engineering Student 
 
 Passionate about applying Machine Learning, Artificial Intelligence and Finite Element Analysis to solve real-world civil and structural engineering problems.
-
----
-
-## ⭐ If you found this project interesting...
-
-Consider giving the repository a ⭐ on GitHub!
-
-It helps others discover the project and supports future engineering-focused machine learning work.
